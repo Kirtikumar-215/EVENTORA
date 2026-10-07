@@ -1,4 +1,104 @@
-<!doctype html><html lang="en" ng-app="eventoraApp"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Events | Eventora Lite</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="css/style.css"></head><body ng-controller="EventsController">
-<nav class="navbar navbar-dark fixed-top"><div class="container"><a class="navbar-brand fw-bold" href="index.html">EVENT<span>ORA</span></a><div><a class="nav-link d-inline" href="index.html">Home</a><a class="nav-link d-inline" href="organize-event.html">Organize Event</a><a class="nav-link d-inline" href="coordinator.html">Become Coordinator</a><a class="nav-link d-inline" href="registrations.html">My Registrations</a></div></div></nav>
-<section class="page-hero"><div class="container"><small>CAMPUS CALENDAR</small><h1>Find your next <span>experience.</span></h1><p>Workshops, competitions, cultural activities and more.</p></div></section><main class="section"><div class="container"><div class="row g-4"><div class="col-md-6 col-lg-4" ng-repeat="event in events"><div class="card event-card h-100"><div class="event-image {{event.theme}}"><b>{{event.category}}</b></div><div class="p-4"><small class="purple">{{event.date}}</small><h4>{{event.title}}</h4><p class="text-muted">{{event.description}}</p><p>📍 {{event.venue}} · {{event.time}}</p><a ng-href="event-details.html?id={{event.id}}" class="btn btn-dark">View Details</a></div></div></div></div></div></main><footer>© 2026 Eventora Lite</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script><script src="js/events.js"></script><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en" ng-app="eventoraApp">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Events | Eventora Lite</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body ng-controller="EventsController" ng-cloak>
+    <nav class="navbar navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html"
+          >EVENT<span>ORA</span></a
+        >
+        <div>
+          <a class="nav-link d-inline" href="index.html">Home</a
+          ><a class="nav-link d-inline" href="events.html">Events</a
+          ><a class="nav-link d-inline" href="organize-event.html"
+            >Organize Event</a
+          ><a class="nav-link d-inline" href="coordinator.html"
+            >Become Coordinator</a
+          ><a class="nav-link d-inline" href="registrations.html"
+            >My Registrations</a
+          ><a class="nav-link d-inline" href="host.html">My Hosted Events</a>
+        </div>
+      </div>
+    </nav>
+    <section class="page-hero events-hero">
+      <div class="container">
+        <div class="events-hero-content">
+          <div>
+            <small>CAMPUS CALENDAR</small>
+            <h1>Find your next <span>experience.</span></h1>
+            <p>Explore approved workshops, competitions, cultural activities and more.</p>
+          </div>
+          <div class="event-count-card">
+            <strong>{{events.length}}</strong>
+            <span>approved events</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main class="section">
+      <div class="container">
+        <div class="events-toolbar">
+          <div>
+            <small class="purple">ALL EVENTS</small>
+            <h2>Upcoming on campus</h2>
+          </div>
+          <a href="organize-event.html" class="btn btn-primary">Organize an Event</a>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" ng-repeat="event in events">
+            <div class="card event-card h-100">
+              <div class="event-image">
+                <img
+                  ng-src="{{event.poster}}"
+                  alt="{{event.title}} poster"
+                  onerror="
+                    this.onerror = null;
+                    this.src = 'images/default-event.jpg';
+                  "
+                /><b>{{event.category}}</b>
+              </div>
+              <div class="p-4 event-card-content">
+                <small class="purple"
+                  >{{event.date | date:'MMMM d, yyyy'}}</small
+                >
+                <h4>{{event.title}}</h4>
+                <p class="text-muted mb-3">{{event.venue}}</p>
+                <div class="event-card-actions mt-auto">
+                  <a
+                    ng-href="event-details.html?id={{event.id}}"
+                    class="btn btn-dark"
+                    >View Details</a
+                  >
+                  <a
+                    ng-href="register.html?id={{event.id}}"
+                    class="btn btn-primary"
+                    >Register Now</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="empty text-center" ng-if="events.length === 0">
+          <h3>No approved events available.</h3>
+          <a href="organize-event.html" class="btn btn-primary"
+            >Organize an Event</a
+          >
+        </div>
+      </div>
+    </main>
+    <footer>© 2026 Eventora Lite</footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
