@@ -1,0 +1,20 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated output
+node_modules/
+vendor/
+dist/
+build/
+
+# Local development logs
+*.log
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
